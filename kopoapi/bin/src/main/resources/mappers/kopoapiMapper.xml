@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mappers.kopoapiMapper">
+
+  <select id="testget" resultType="hyulapData">
+      SELECT *
+      FROM HYULAPDATA
+  </select>
+
+  <select id="getapidata" parameterType="hashMap" resultType="hyulapData">
+  <![CDATA[
+    SELECT ROWNUM, a.*
+      FROM HYULAPDATA a
+      WHERE 1=1
+
+      <if test='searchTime != null'>
+        <if test='!searchTime.equals("")'>
+          AND GET_TIME LIKE '%'||#{searchTime}||'%'
+        </if>
+      </if>
+
+      <if test='searchDevice != null'>
+        <if test='!searchDevice.equals("")'>
+          AND DEVICE_DESC LIKE '%'||#{searchDevice}||'%'
+        </if>
+      </if>
+
+      <if test='searchName != null'>
+        <if test='!searchName.equals("")'>
+          AND FULLNAME = #{searchName}
+        </if>
+      </if>
+
+      <if test='searchCreate != null'>
+        <if test='!searchCreate.equals("")'>
+          AND CREATE_DTTM LIKE '%'||#{searchCreate}||'%'
+        </if>
+      </if>
+
+      AND TOTAL_COUNT >= #{startNumber, jdbcType=INTEGER}
+      AND ROWNUM <= #{limitedNumber, jdbcType=INTEGER}
+      ORDER BY TOTAL_COUNT
+  ]]>
+  </select>
+
+  <select id="testapi" parameterType="hashMap" resultType="hyulapData">
+  <![CDATA[
+    SELECT ROWNUM, a.*
+    FROM HYULAPDATA a
+    WHERE 1=1
+    AND TOTAL_COUNT >= #{startNumber. jdbcType=INTEGER}
+    AND ORWNUM <= #{limitedNumber, jdbcType=INTEGER}
+    ORDER BY TOTAL_COUNT
+  ]]>]
+  </select>
+</mapper>
