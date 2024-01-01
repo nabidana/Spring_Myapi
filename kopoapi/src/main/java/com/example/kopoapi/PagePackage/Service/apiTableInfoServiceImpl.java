@@ -18,7 +18,7 @@ public class apiTableInfoServiceImpl implements apiTableInfoService{
     @Override
     public List<apiTableInfo> getPageList(int numbers) throws Exception {
         int totalCount = repository.totalCount();
-        //System.out.println(totalCount);
+        System.out.println(totalCount);
         HashMap<String, Object> maps = new HashMap<String,Object>();
         //페이징 계산
         int limitedNumber = totalCount - (20 * (numbers-1));
@@ -29,8 +29,8 @@ public class apiTableInfoServiceImpl implements apiTableInfoService{
         if( limitedNumber < 20){
             limitedNumber = 20;
         }
-        System.out.println("ST:"+pageNumber);
-        System.out.println("END:"+limitedNumber);
+        //System.out.println(pageNumber);
+        //System.out.println(limitedNumber);
         maps.put("pageNumber", pageNumber);
         maps.put("limitedNumber", limitedNumber);
         return repository.getPageList(maps);

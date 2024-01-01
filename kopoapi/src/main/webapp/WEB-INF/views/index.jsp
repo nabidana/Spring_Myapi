@@ -49,9 +49,9 @@
                     <br><br>
                     <div class="text-xs-center">
                         <ul class="pagination justify-content-center">
-                            <c:forEach begin="0" end="${totalpage}" var="numz">
+                            <c:forEach begin="1" end="${totalpage}" var="numz">
                                 <li class="page-item">
-                                    <a class="page-link" href="/?pagenumber=${numz+1}">${numz+1}</a>
+                                    <a class="page-link" href="/?pagenumber=${numz}">${numz}</a>
                                 </li>
                             </c:forEach>
                         </ul>

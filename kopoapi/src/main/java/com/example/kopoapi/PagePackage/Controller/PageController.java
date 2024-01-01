@@ -26,7 +26,7 @@ public class PageController {
             pageNum = "1";
         }
         int pageNumbers = Integer.parseInt(pageNum);
-        //List<apiTableInfo> lists = service.getPageList(pageNumbers);
+
         model.addAttribute("totalpage", (service.totalCount()/20));
         model.addAttribute("getPageList", service.getPageList(pageNumbers));
         return "index";
